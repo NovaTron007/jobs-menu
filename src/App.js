@@ -1,6 +1,7 @@
 
 import React, { useState, useEffect } from "react"
 import { FaAngleDoubleRight } from "react-icons/fa"
+import Button from "./Button"
 
 const url = "https://course-api.com/react-tabs-project"
 
@@ -46,15 +47,10 @@ function App() {
         {/* btn container add active class when index is same as jobIndex */}
         <div className="btn-container">
           {jobs.map((item, index) => {
-              return (
-                <button 
-                  key={index}
-                  className={`job-btn ${index === jobIndex && "active-btn"}`}
-                  onClick={()=>setJobIndex(index)}
-                >
-                {item.company}
-              </button>
-              )
+            return(
+              // spread all values of object (passes all as props to directly access by name in child component)
+              <Button key={index} {...item} index={index} jobIndex={jobIndex} setJobIndex={setJobIndex} />
+            )
           })}
         </div>
         {/* job info */}
